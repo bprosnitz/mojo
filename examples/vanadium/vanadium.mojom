@@ -1,0 +1,15 @@
+// Copyright 2014 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+[JavaPackage="org.chromium.mojo.examples.vanadium"]
+module mojo.examples;
+
+interface LocalVanadiumService {
+  GetEndpoint() => (string? value);
+  GetRoot() => (array<uint8> value);
+};
+
+interface VanadiumClient {
+  EchoOverVanadium(string? inputStr) => (string? value);
+};

@@ -35,6 +35,7 @@ group("examples") {
     "//examples/wget",
     "//examples/window_manager",
     "//examples/wm_flow",
+    "//examples/vanadium",
   ]
 
   if (!is_android) {

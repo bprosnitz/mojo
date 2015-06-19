@@ -1,0 +1,5 @@
+package main
+
+type Echo interface {
+  Echo(msg string) (string | error)
+}

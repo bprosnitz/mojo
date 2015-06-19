@@ -1,0 +1,73 @@
+# Copyright 2015 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//mojo/go/rules.gni")
+import("//mojo/public/dart/rules.gni")
+import("//mojo/public/tools/bindings/mojom.gni")
+
+group("vanadium") {
+  assert(go_build_tool != "")
+  deps = [
+    ":vanadium_echo_client",
+    ":vanadium_echo_server",
+    ":echo_over_vanadium",
+
+    ":dart_echo_over_vanadium",
+
+    ":basic_echo_client", #TEMP
+  ]
+}
+
+go_mojo_application("echo_over_vanadium") {
+  sources = [
+    "echo_over_vanadium.go",
+  ]
+  deps = [
+    "//examples/vanadium:bindings",
+  ]
+}
+
+go_mojo_application("vanadium_echo_client") {
+  sources = [
+    "echo_client.go",
+  ]
+  deps = [
+    "//examples/vanadium:bindings",
+  ]
+}
+
+go_mojo_application("vanadium_echo_server") {
+  sources = [
+    "echo_server.go",
+  ]
+  deps = [
+    "//examples/vanadium:bindings",
+  ]
+}
+
+go_mojo_application("basic_echo_client") {
+  sources = [
+    "basic_echo_client.go",
+  ]
+  deps = [
+    "//examples/vanadium:bindings",
+  ]
+}
+
+dartzip_packaged_application("dart_echo_over_vanadium") {
+  output_name = "dart_echo_over_vanadium"
+  sources = [
+    "main.dart",
+  ]
+  deps = [
+    "//mojo/public/dart",
+    "//examples/vanadium:bindings",
+  ]
+}
+
+mojom("bindings") {
+  sources = [
+    "vanadium.mojom",
+  ]
+}
