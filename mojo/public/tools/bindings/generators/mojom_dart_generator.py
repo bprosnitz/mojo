@@ -429,6 +429,7 @@ class Generator(generator.Generator):
     if os.path.exists(os.path.join(self.output_dir, link)):
       os.unlink(os.path.join(self.output_dir, link))
     try:
+      os.makedirs(os.path.join(self.output_dir, link))
       if sys.platform == "win32":
         shutil.copy(os.path.join(self.output_dir, path),
                     os.path.join(self.output_dir, link))
